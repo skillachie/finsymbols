@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Finsymbols by skillachie</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Finsymbols</h1>
+        <p>Obtains stock symbols and relating information for SP500, AMEX, NYSE, and NASDAQ </p>
+
+        <p class="view"><a href="https://github.com/skillachie/finsymbols">View the Project on GitHub <small>skillachie/finsymbols</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/skillachie/finsymbols/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/skillachie/finsymbols/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/skillachie/finsymbols">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a name="methods-available" class="anchor" href="#methods-available"><span class="octicon octicon-link"></span></a>Methods available</h3>
+
+<ul>
+<li>get_amex_symbols()</li>
+<li>get_nyse_symbols()</li>
+<li>get_nasdaq_symbols()</li>
+<li>get_sp500_symbols()</li>
+</ul><h3>
+<a name="use" class="anchor" href="#use"><span class="octicon octicon-link"></span></a>Use</h3>
+
+<ol>
+<li>Clone the repository and add to your site packages folder. Or add the directory where you have the files stored</li>
+</ol><pre><code>
+&gt;&gt;import sys
+&gt;&gt;sys.path.append('/home/skillachie/Desktop/')
+&gt;&gt;import finsymbols
+
+</code></pre>
+
+<ol>
+<li>Call any one of the method available to get back the list of symbols and related information. Will return a list of dictionaries.</li>
+</ol><pre><code>sp500 = finsymbols.get_sp500_symbols()
+
+pprint.pprint(sp500)
+
+{'company': u'Xcel Energy Inc',
+  'headquaters': u'Minneapolis, Minnesota',
+  'industry': u'Multi-Utilities &amp; Unregulated Power',
+  'sector': u'Utilities',
+  'symbol': u'XEL'},
+ {'company': u'Xerox Corp.',
+  'headquaters': u'Norwalk, Connecticut',
+  'industry': u'IT Consulting &amp; Services',
+  'sector': u'Information Technology',
+  'symbol': u'XRX'},
+ {'company': u'Xilinx Inc',
+  'headquaters': u'San Jose, California',
+  'industry': u'Semiconductors',
+  'sector': u'Information Technology',
+  'symbol': u'XLNX'},
+ {'company': u'XL Capital',
+  'headquaters': u'Hamilton, Bermuda',
+  'industry': u'Property &amp; Casualty Insurance',
+  'sector': u'Financials',
+  'symbol': u'XL'},
+ {'company': u'Xylem Inc.',
+  'headquaters': u'White Plains, New York',
+  'industry': u'Industrial Conglomerates',
+  'sector': u'Industrials',
+  'symbol': u'XYL'},
+ {'company': u'Yahoo Inc.',
+  'headquaters': u'Sunnyvale, California',
+  'industry': u'Internet Software &amp; Services',
+  'sector': u'Information Technology',
+  'symbol': u'YHOO'},
+
+
+</code></pre>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Feel free to contribute or make suggestions, features requests. If you have any issues feel free to send a message to <a href="https://github.com/skillachie" class="user-mention">@skillachie</a> </p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/skillachie">skillachie</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
