@@ -4,7 +4,7 @@ import pprint
 import sys
 
 def get_sp500_symbols():
-	page_html = wiki_html('List_of_S%26P_500_companies')
+	page_html = wiki_html('List_of_S%26P_500_companies','SP500.html')
 	wiki_soup = BeautifulSoup(page_html)
 	symbol_table = wiki_soup.find(attrs={'class': 'wikitable sortable'})
 
