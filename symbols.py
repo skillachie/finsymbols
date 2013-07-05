@@ -16,15 +16,15 @@ def get_sp500_symbols():
 		td_count = 0
 		for symbol_data in symbol_raw_data:
 			if(td_count == 0): 
-				symbol_data_content['symbol'] = symbol_data.text
+				symbol_data_content['symbol'] = symbol_data.text.encode('utf-8')
 			elif(td_count == 1): 
-				symbol_data_content['company'] = symbol_data.text
+				symbol_data_content['company'] = symbol_data.text.encode('utf-8')
 			elif(td_count == 3): 
-				symbol_data_content['sector'] = symbol_data.text
+				symbol_data_content['sector'] = symbol_data.text.encode('utf-8')
 			elif(td_count == 4): 
-				symbol_data_content['industry'] = symbol_data.text
+				symbol_data_content['industry'] = symbol_data.text.encode('utf-8')
 			elif(td_count == 5):
-				symbol_data_content['headquaters'] = symbol_data.text
+				symbol_data_content['headquaters'] = symbol_data.text.encode('utf-8')
 			
 			td_count += 1
 				

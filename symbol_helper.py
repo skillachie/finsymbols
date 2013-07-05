@@ -94,6 +94,7 @@ def read_csv(exchange):
     next(exchange_file, None)
 	
     for row in exchange_file:
+        row['symbol'] = row['symbol'].encode('utf-8').strip()
         symbol_list.append(row)
 
     return symbol_list	
