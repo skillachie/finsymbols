@@ -25,13 +25,13 @@ def is_cached(file_path):
     file_age = (current_time - file_time).total_seconds()
     
     if(file_age > 86400 and is_connected()):
-        print "The file is old"
+        #print "The file is old"
         return False
     elif(is_connected()):
-        print "The file is cached"
+        #print "The file is cached"
         return True
     else:
-        print "Not connected to the internet using last obtained file"
+        #print "Not connected to the internet using last obtained file"
         return True
 
 
