@@ -29,6 +29,22 @@
       </header>
       <section>
         <h3>
+<a name="use" class="anchor" href="#use"><span class="octicon octicon-link"></span></a>Use</h3>
+
+<ol>
+<li>Clone the repository and add to your site packages folder or use pip to install the module.</li>
+</ol><pre><code>
+pip install finsymbols
+
+or 
+
+&gt;&gt;import sys
+&gt;&gt;sys.path.append('/home/skillachie/Desktop/')
+&gt;&gt;import finsymbols
+
+</code></pre>
+
+<h3>
 <a name="methods-available" class="anchor" href="#methods-available"><span class="octicon octicon-link"></span></a>Methods available</h3>
 
 <ul>
@@ -36,19 +52,7 @@
 <li>get_nyse_symbols()</li>
 <li>get_nasdaq_symbols()</li>
 <li>get_sp500_symbols()</li>
-</ul><h3>
-<a name="use" class="anchor" href="#use"><span class="octicon octicon-link"></span></a>Use</h3>
-
-<ol>
-<li>Clone the repository and add to your site packages folder. Or add the directory where you have the files stored</li>
-</ol><pre><code>
-&gt;&gt;import sys
-&gt;&gt;sys.path.append('/home/skillachie/Desktop/')
-&gt;&gt;import finsymbols
-
-</code></pre>
-
-<ol>
+</ul><ol>
 <li>Call any one of the method available to get back the list of symbols and related information. Will return a list of dictionaries.</li>
 </ol><pre><code>sp500 = finsymbols.get_sp500_symbols()
 
