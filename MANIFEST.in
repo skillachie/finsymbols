@@ -1,0 +1,3 @@
+include *.md 
+recursive-include finsymbols/exchanges *.csv *.html
+recursive-include finsymbols/ *.md
