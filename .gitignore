@@ -1,0 +1,6 @@
+*.py[co]
+*.sw[op]
+*.egg-info/
+
+# Python3
+*__pycache__/
