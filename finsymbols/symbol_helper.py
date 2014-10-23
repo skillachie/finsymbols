@@ -60,10 +60,10 @@ def fetch_file(url):
     file_fetcher = urllib.build_opener()
     file_fetcher.addheaders =  [('User-agent', 'Mozilla/5.0')]
     file_data = file_fetcher.open(url).read()
-    if isinstance(file_data, bytes): # Python3
-        return file_data.decode("utf-8")
-    elif isinstance(file_data, str):
+    if isinstance(file_data, str):  # Python2
         return file_data
+    elif isinstance(file_data, bytes):  # Python3
+        return file_data.decode("utf-8")
 
 
 def wiki_html(url,file_name):

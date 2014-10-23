@@ -5,10 +5,10 @@ import os
 from finsymbols import symbols
 
 
-class test_size_of_list(TestCase):
+class TestSizeOfList(TestCase):
     def test_sp500_size(self):
         sp500 = symbols.get_sp500_symbols()
-        assert len(sp500) == 500 ,'The S&P 500 is no more'
+        assert len(sp500) == 502 , 'len gathered data: {}. Expected len: 502'.format(len(sp500))
 
     def test_amex_not_null(self):
         amex = symbols.get_amex_symbols()
