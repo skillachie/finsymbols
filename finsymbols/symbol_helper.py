@@ -3,10 +3,9 @@ try:
 except ImportError:  # python3
     import urllib.request as urllib
 import os
-import sys
-import csv
 import datetime
-import pprint
+
+import finsymbols
 
 
 def get_symbol_list(symbol_data):
@@ -60,9 +59,7 @@ def wiki_html(url,file_name):
     python-wikitools - http://code.google.com/p/python-wikitools/
     Ex. http://en.wikipedia.org/w/api.php?format=xml&action=query&titles=List_of_S%26P_500_companies&prop=revisions&rvprop=content
     '''
-    module_path = os.path.dirname(os.path.realpath(__file__))
-    exchanges_dir = os.path.join(module_path,'exchanges')
-    file_path = os.path.abspath(exchanges_dir) + os.sep + file_name
+    file_path = os.path.join(os.path.dirname(finsymbols.__file__), file_name)
 
     if(os.path.exists(file_path) and is_cached(file_path)):
         opener = urllib.build_opener()
