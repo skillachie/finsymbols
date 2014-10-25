@@ -2,5 +2,8 @@
 *.sw[op]
 *.egg-info/
 
+# Cached files
+SP500.html
+
 # Python3
 *__pycache__/

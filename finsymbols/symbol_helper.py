@@ -3,10 +3,9 @@ try:
 except ImportError:  # python3
     import urllib.request as urllib
 import os
-import sys
-import csv
 import datetime
-import pprint
+
+import finsymbols
 
 
 def get_symbol_list(symbol_data):
@@ -26,17 +25,6 @@ def get_exchange_url(exchange):
             "exchange={}&render=download".format(exchange))
 
 
-def is_connected():
-    '''
-    Checks internet connectivity
-    '''
-    try:
-        urllib.urlopen("http://google.com", timeout=2)
-        return True
-    except urllib.URLError:
-        return False
-
-
 def is_cached(file_path):
     '''
     Checks if the file cached is still valid
@@ -45,10 +33,8 @@ def is_cached(file_path):
     current_time = datetime.datetime.now()
     file_age = (current_time - file_time).total_seconds()
 
-    if(file_age > 86400 and is_connected()):
+    if file_age > 86400:
         return False
-    elif(is_connected()):
-        return True
     else:
         return True
 
@@ -60,10 +46,10 @@ def fetch_file(url):
     file_fetcher = urllib.build_opener()
     file_fetcher.addheaders =  [('User-agent', 'Mozilla/5.0')]
     file_data = file_fetcher.open(url).read()
-    if isinstance(file_data, bytes): # Python3
-        return file_data.decode("utf-8")
-    elif isinstance(file_data, str):
+    if isinstance(file_data, str):  # Python2
         return file_data
+    elif isinstance(file_data, bytes):  # Python3
+        return file_data.decode("utf-8")
 
 
 def wiki_html(url,file_name):
@@ -73,9 +59,7 @@ def wiki_html(url,file_name):
     python-wikitools - http://code.google.com/p/python-wikitools/
     Ex. http://en.wikipedia.org/w/api.php?format=xml&action=query&titles=List_of_S%26P_500_companies&prop=revisions&rvprop=content
     '''
-    module_path = os.path.dirname(os.path.realpath(__file__))
-    exchanges_dir = os.path.join(module_path,'exchanges')
-    file_path = os.path.abspath(exchanges_dir) + os.sep + file_name
+    file_path = os.path.join(os.path.dirname(finsymbols.__file__), file_name)
 
     if(os.path.exists(file_path) and is_cached(file_path)):
         opener = urllib.build_opener()
@@ -86,37 +70,3 @@ def wiki_html(url,file_name):
         saved_file.write(wiki_html)
         saved_file.close()
         return wiki_html
-
-
-def get_csv(exchange):
-    '''
-    Downloads the symbol list for each exchange from Nasdaq
-    '''
-    module_path = os.path.dirname(os.path.realpath(__file__))
-    exchanges_dir = os.path.join(module_path,'exchanges')
-    file_path = os.path.abspath(exchanges_dir) + os.sep + exchange + '.csv'
-
-    if(os.path.exists(file_path) and is_cached(file_path)):
-        return file_path
-    else:
-        csv_file = fetch_file('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange='+str(exchange)+'&render=download')
-        saved_file = open(file_path , "w")
-        saved_file.write(csv_file)
-        saved_file.close()
-        return file_path
-
-
-def read_csv(exchange):
-    '''
-    Reads symbols in csv file as dict
-    '''
-    symbol_list = list()
-    file_path = get_csv(exchange)
-    exchange_file = csv.DictReader(open(file_path),fieldnames=['symbol', 'company', 'LastSale', 'MarketCap', 'ADR TSO', 'IPOyear', 'sector', 'industry', 'Summary Quote', ''])
-    next(exchange_file, None)
-
-    for row in exchange_file:
-        row['symbol'] = row['symbol'].encode('utf-8').strip()
-        symbol_list.append(row)
-
-    return symbol_list
