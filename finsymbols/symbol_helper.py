@@ -29,6 +29,9 @@ def is_cached(file_path):
     '''
     Checks if the file cached is still valid
     '''
+    if not os.path.exists(file_path):
+        return False
+
     file_time = datetime.datetime.fromtimestamp(os.path.getctime(file_path))
     current_time = datetime.datetime.now()
     file_age = (current_time - file_time).total_seconds()
@@ -61,11 +64,11 @@ def wiki_html(url,file_name):
     '''
     file_path = os.path.join(os.path.dirname(finsymbols.__file__), file_name)
 
-    if(os.path.exists(file_path) and is_cached(file_path)):
-        opener = urllib.build_opener()
-        return opener.open("file://" + file_path).read()
+    if is_cached(file_path):
+        with open(file_path, "r") as sp500_file:
+            return sp500_file.read()
     else:
-        wiki_html = fetch_file('http://en.wikipedia.org/wiki/'+str(url))
+        wiki_html = fetch_file('http://en.wikipedia.org/wiki/' + str(url))
         saved_file = open(file_path , "w")
         saved_file.write(wiki_html)
         saved_file.close()
