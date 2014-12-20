@@ -50,5 +50,12 @@ def get_nasdaq_symbols():
 
 def _get_exchange_data(exchange):
     url = get_exchange_url(exchange)
-    symbol_data = fetch_file(url)
-    return get_symbol_list(symbol_data)
+    file_path = os.path.join(os.path.dirname(finsymbols.__file__), exchange)
+    if is_cached(file_path):
+        with open(file_path, "r") as cached_file:
+            symbol_data = cached_file.read()
+    else:
+      symbol_data = fetch_file(url)
+      save_file(file_path,symbol_data)
+    
+    return get_symbol_list(symbol_data,exchange)
