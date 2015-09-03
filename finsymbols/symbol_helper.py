@@ -8,6 +8,8 @@ import sys
 import finsymbols
 import pprint
 import csv
+import re
+
 
 def get_symbol_list(symbol_data,exchange_name):
     
@@ -15,7 +17,7 @@ def get_symbol_list(symbol_data,exchange_name):
     
     symbol_list = list()
     symbol_data = symbol_data.replace('"', "")
-    symbol_data = symbol_data.split("\r\n")
+    symbol_data = re.split("\r?\n", symbol_data)
 
     headers = symbol_data[0]
     #symbol,company,sector,industry,headquaters
