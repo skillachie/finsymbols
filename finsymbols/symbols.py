@@ -27,7 +27,7 @@ def get_sp500_symbols():
 			elif(td_count == 4):
 				symbol_data_content['industry'] = symbol_data.text.encode('utf-8')
 			elif(td_count == 5):
-				symbol_data_content['headquaters'] = symbol_data.text.encode('utf-8')
+				symbol_data_content['headquarters'] = symbol_data.text.encode('utf-8')
 
 			td_count += 1
 
