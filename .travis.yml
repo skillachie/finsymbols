@@ -1,6 +1,5 @@
 language: python
 python:
-    - 2.6
     - 2.7
     - 3.3
     - 3.4
@@ -8,6 +7,7 @@ python:
 
 install: 
     - pip install beautifulsoup4
+    - pip install six
 
 script: nosetests
 

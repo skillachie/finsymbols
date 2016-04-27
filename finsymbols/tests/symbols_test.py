@@ -1,4 +1,5 @@
 from unittest import TestCase, main
+from six import string_types
 import sys
 import os
 
@@ -28,7 +29,7 @@ class TestSizeOfList(TestCase):
         sp500 = symbols.get_sp500_symbols()
         company = sp500[0]
 
-        assert isinstance(company['company'], basestring) == True, 'Company dict: {}.\
+        assert isinstance(company['company'], string_types) == True, 'Company dict: {}.\
          Expected output to be string'.format(company)
 
 
