@@ -11,33 +11,35 @@ import csv
 import re
 
 
-def get_symbol_list(symbol_data,exchange_name):
-    
-    csv_file = exchange_name +'.csv'    
-    
+def get_symbol_list(symbol_data, exchange_name):
+
+    csv_file = exchange_name + '.csv'
+
     symbol_list = list()
     symbol_data = symbol_data.replace('"', "")
     symbol_data = re.split("\r?\n", symbol_data)
 
     headers = symbol_data[0]
-    #symbol,company,sector,industry,headquaters
+    # symbol,company,sector,industry,headquaters
     symbol_data = list(map(lambda x: x.split(","), symbol_data))
     # We need to cut off the the last row because it is a null string
     for row in symbol_data[1:-1]:
         symbol_data_dict = dict()
-        symbol_data_dict['symbol'] = row[0] 
-        symbol_data_dict['company'] = row[1] 
-        symbol_data_dict['sector'] = row[6] 
-        symbol_data_dict['industry'] = row[7] 
-        symbol_data_dict['industry'] = row[7] 
+        symbol_data_dict['symbol'] = row[0]
+        symbol_data_dict['company'] = row[1]
+        symbol_data_dict['sector'] = row[6]
+        symbol_data_dict['industry'] = row[7]
+        symbol_data_dict['industry'] = row[7]
 
         symbol_list.append(symbol_data_dict)
     return symbol_list
 
-def save_file(file_path,file_name):
-    saved_file = open(file_path , "w")
+
+def save_file(file_path, file_name):
+    saved_file = open(file_path, "w")
     saved_file.write(file_name)
     saved_file.close()
+
 
 def get_exchange_url(exchange):
     return ("http://www.nasdaq.com/screening/companies-by-industry.aspx?"
@@ -66,7 +68,7 @@ def fetch_file(url):
     Gets and downloads files
     '''
     file_fetcher = urllib.build_opener()
-    file_fetcher.addheaders =  [('User-agent', 'Mozilla/5.0')]
+    file_fetcher.addheaders = [('User-agent', 'Mozilla/5.0')]
     file_data = file_fetcher.open(url).read()
     if isinstance(file_data, str):  # Python2
         return file_data
@@ -74,7 +76,7 @@ def fetch_file(url):
         return file_data.decode("utf-8")
 
 
-def wiki_html(url,file_name):
+def wiki_html(url, file_name):
     '''
     Obtains html from Wikipedia
     Note: API exist but for my use case. Data returned was not parsable. Preferred to use html
@@ -88,6 +90,6 @@ def wiki_html(url,file_name):
             return sp500_file.read()
     else:
         wiki_html = fetch_file('http://en.wikipedia.org/wiki/' + str(url))
-        #Save file to be used by cache
-        save_file(file_path,wiki_html)
+        # Save file to be used by cache
+        save_file(file_path, wiki_html)
         return wiki_html
