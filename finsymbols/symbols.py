@@ -38,7 +38,6 @@ def get_sp500_symbols():
 
     return symbol_data_list[1::]
 
-
 def get_nyse_symbols():
     return _get_exchange_data("NYSE")
 
