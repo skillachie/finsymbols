@@ -16,12 +16,11 @@ def get_symbol_list(symbol_data, exchange_name):
     csv_file = exchange_name + '.csv'
 
     symbol_list = list()
-    symbol_data = symbol_data.replace('"', "")
     symbol_data = re.split("\r?\n", symbol_data)
 
     headers = symbol_data[0]
     # symbol,company,sector,industry,headquaters
-    symbol_data = list(map(lambda x: x.split(","), symbol_data))
+    symbol_data = list(csv.reader(symbol_data, delimiter=','))
     # We need to cut off the the last row because it is a null string
     for row in symbol_data[1:-1]:
         symbol_data_dict = dict()
@@ -29,8 +28,7 @@ def get_symbol_list(symbol_data, exchange_name):
         symbol_data_dict['company'] = row[1]
         symbol_data_dict['sector'] = row[6]
         symbol_data_dict['industry'] = row[7]
-        symbol_data_dict['industry'] = row[7]
-
+     
         symbol_list.append(symbol_data_dict)
     return symbol_list
 
