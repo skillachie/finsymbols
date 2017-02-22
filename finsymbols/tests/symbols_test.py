@@ -10,8 +10,8 @@ class TestSizeOfList(TestCase):
 
     def test_sp500_size(self):
         sp500 = symbols.get_sp500_symbols()
-        assert len(sp500) == 504, 'len gathered data: {}.\
-         Expected len: 504'.format(len(sp500))
+        assert len(sp500) == 505, 'len gathered data: {}.\
+         Expected len: 505'.format(len(sp500))
 
     def test_amex_not_null(self):
         amex = symbols.get_amex_symbols()
