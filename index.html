@@ -40,7 +40,7 @@ or
 
 &gt;&gt;import sys
 &gt;&gt;sys.path.append('/home/skillachie/Desktop/')
-&gt;&gt;import finsymbols
+&gt;&gt;from finsymbols import symbols
 
 </code></pre>
 
@@ -54,7 +54,7 @@ or
 <li>get_sp500_symbols()</li>
 </ul><ol>
 <li>Call any one of the method available to get back the list of symbols and related information. Will return a list of dictionaries.</li>
-</ol><pre><code>sp500 = finsymbols.get_sp500_symbols()
+</ol><pre><code>sp500 = symbols.get_sp500_symbols()
 
 pprint.pprint(sp500)
 
