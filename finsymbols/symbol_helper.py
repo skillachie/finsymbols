@@ -34,8 +34,12 @@ def get_symbol_list(symbol_data, exchange_name):
 
 
 def save_file(file_path, file_data):
-    with open(file_path, "wb") as saved_file:
-        saved_file.write(file_data.encode('utf-8'))
+    if isinstance(file_data, str):
+        with open(file_path, "w") as saved_file:
+            saved_file.write(file_data)
+    elif isinstance(file_data, bytes):
+        with open(file_path, "wb") as saved_file:
+            saved_file.write(file_data.encode('utf-8'))
 
 
 def get_exchange_url(exchange):
