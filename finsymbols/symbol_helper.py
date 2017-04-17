@@ -33,10 +33,9 @@ def get_symbol_list(symbol_data, exchange_name):
     return symbol_list
 
 
-def save_file(file_path, file_name):
-    saved_file = open(file_path, "w")
-    saved_file.write(file_name)
-    saved_file.close()
+def save_file(file_path, file_data):
+    with open(file_path, "wb") as saved_file:
+        saved_file.write(file_data.encode('utf-8'))
 
 
 def get_exchange_url(exchange):
@@ -84,10 +83,10 @@ def wiki_html(url, file_name):
     file_path = os.path.join(os.path.dirname(finsymbols.__file__), file_name)
 
     if is_cached(file_path):
-        with open(file_path, "r") as sp500_file:
+        with open(file_path, "rb") as sp500_file:
             return sp500_file.read()
     else:
-        wiki_html = fetch_file('http://en.wikipedia.org/wiki/' + str(url))
+        wiki_html = fetch_file('http://en.wikipedia.org/wiki/{}'.format(url))
         # Save file to be used by cache
         save_file(file_path, wiki_html)
         return wiki_html
