@@ -9,7 +9,7 @@ setup(
     package_data={'finsymbols': ['exchanges/*.csv']},
     include_package_data=True,
     author='Dwayne V Campbell',
-    author_email='dwaynecampbell13 _at_ gmail.com',
+    author_email='dwaynecampbell13@gmail.com',
     description='Retrieves list of all symbols present in SP500, NASDAQ ,AMEX and NYSE',
     long_description=open('README.md').read(),
     url='http://skillachie.github.io/finsymbols/',
