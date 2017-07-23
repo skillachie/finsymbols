@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name='finsymbols',
-    version='1.1.1',
+    version='1.3.0',
     packages=['finsymbols'],
     package_dir={'finsymbols': 'finsymbols'},
     package_data={'finsymbols': ['exchanges/*.csv']},
